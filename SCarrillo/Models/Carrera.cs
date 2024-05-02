@@ -5,10 +5,19 @@ namespace SCarrillo.Models
     public class Carrera
     {
         [Key]
-        public int Id { get; set; }
-        public string nombre_Carrera { get; set; }
-        public string campus { get; set; }
-        public int numero_Carrera { get; set; }
+        public int CarreraId { get; set; }
+
+        [Required]
+        [StringLength(100)]
+        public string NombreCarrera { get; set; }
+
+        [Required]
+        [StringLength(100)]
+        public string Campus { get; set; }
+
+        [Required]
+        [Range(1, 12)]
+        public int NumeroSemestres { get; set; }
 
     }
 }
