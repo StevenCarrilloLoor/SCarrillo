@@ -29,9 +29,9 @@ namespace SCarrillo.Models
 
         [Required]
         [ForeignKey("Carrera")]
-        public int CarreraId { get; set; }
+        public int? CarreraId { get; set; }
 
-        public virtual Carrera Carrera { get; set; }
+        public Carrera? Carrera { get; set; }
 
 
     }
