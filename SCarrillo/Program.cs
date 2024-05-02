@@ -1,4 +1,9 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using SCarrillo.Data;
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<SCarrilloContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("SCarrilloContext") ?? throw new InvalidOperationException("Connection string 'SCarrilloContext' not found.")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
