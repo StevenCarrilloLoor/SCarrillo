@@ -15,6 +15,6 @@ namespace SCarrillo.Data
         }
 
         public DbSet<SCarrillo.Models.Carrera> Carrera { get; set; } = default!;
-        public DbSet<SCarrillo.Models.SCarrillo> SCarrillo { get; set; } = default!;
+        public DbSet<SCarrillo.Models.SCarrilloModel> SCarrillo { get; set; } = default!;
     }
 }

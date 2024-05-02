@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SCarrillo.Models
 {
-    public class SCarrillo
+    public class SCarrilloModel
     {
         [Key]
         public int EstudianteId { get; set; }

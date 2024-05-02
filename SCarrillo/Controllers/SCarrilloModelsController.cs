@@ -10,23 +10,23 @@ using SCarrillo.Models;
 
 namespace SCarrillo.Controllers
 {
-    public class SCarrilloesController : Controller
+    public class SCarrilloModelsController : Controller
     {
         private readonly SCarrilloContext _context;
 
-        public SCarrilloesController(SCarrilloContext context)
+        public SCarrilloModelsController(SCarrilloContext context)
         {
             _context = context;
         }
 
-        // GET: SCarrilloes
+        // GET: SCarrilloModels
         public async Task<IActionResult> Index()
         {
             var sCarrilloContext = _context.SCarrillo.Include(s => s.Carrera);
             return View(await sCarrilloContext.ToListAsync());
         }
 
-        // GET: SCarrilloes/Details/5
+        // GET: SCarrilloModels/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -34,42 +34,42 @@ namespace SCarrillo.Controllers
                 return NotFound();
             }
 
-            var sCarrillo = await _context.SCarrillo
+            var sCarrilloModel = await _context.SCarrillo
                 .Include(s => s.Carrera)
                 .FirstOrDefaultAsync(m => m.EstudianteId == id);
-            if (sCarrillo == null)
+            if (sCarrilloModel == null)
             {
                 return NotFound();
             }
 
-            return View(sCarrillo);
+            return View(sCarrilloModel);
         }
 
-        // GET: SCarrilloes/Create
+        // GET: SCarrilloModels/Create
         public IActionResult Create()
         {
             ViewData["CarreraId"] = new SelectList(_context.Carrera, "CarreraId", "Campus");
             return View();
         }
 
-        // POST: SCarrilloes/Create
+        // POST: SCarrilloModels/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("EstudianteId,Edad,Promedio,Nombre,Activo,FechaIngreso,CarreraId")] SCarrillo sCarrillo)
+        public async Task<IActionResult> Create([Bind("EstudianteId,Edad,Promedio,Nombre,Activo,FechaIngreso,CarreraId")] SCarrilloModel sCarrilloModel)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(sCarrillo);
+                _context.Add(sCarrilloModel);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CarreraId"] = new SelectList(_context.Carrera, "CarreraId", "Campus", sCarrillo.CarreraId);
-            return View(sCarrillo);
+            ViewData["CarreraId"] = new SelectList(_context.Carrera, "CarreraId", "Campus", sCarrilloModel.CarreraId);
+            return View(sCarrilloModel);
         }
 
-        // GET: SCarrilloes/Edit/5
+        // GET: SCarrilloModels/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -77,23 +77,23 @@ namespace SCarrillo.Controllers
                 return NotFound();
             }
 
-            var sCarrillo = await _context.SCarrillo.FindAsync(id);
-            if (sCarrillo == null)
+            var sCarrilloModel = await _context.SCarrillo.FindAsync(id);
+            if (sCarrilloModel == null)
             {
                 return NotFound();
             }
-            ViewData["CarreraId"] = new SelectList(_context.Carrera, "CarreraId", "Campus", sCarrillo.CarreraId);
-            return View(sCarrillo);
+            ViewData["CarreraId"] = new SelectList(_context.Carrera, "CarreraId", "Campus", sCarrilloModel.CarreraId);
+            return View(sCarrilloModel);
         }
 
-        // POST: SCarrilloes/Edit/5
+        // POST: SCarrilloModels/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("EstudianteId,Edad,Promedio,Nombre,Activo,FechaIngreso,CarreraId")] SCarrillo sCarrillo)
+        public async Task<IActionResult> Edit(int id, [Bind("EstudianteId,Edad,Promedio,Nombre,Activo,FechaIngreso,CarreraId")] SCarrilloModel sCarrilloModel)
         {
-            if (id != sCarrillo.EstudianteId)
+            if (id != sCarrilloModel.EstudianteId)
             {
                 return NotFound();
             }
@@ -102,12 +102,12 @@ namespace SCarrillo.Controllers
             {
                 try
                 {
-                    _context.Update(sCarrillo);
+                    _context.Update(sCarrilloModel);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!SCarrilloExists(sCarrillo.EstudianteId))
+                    if (!SCarrilloModelExists(sCarrilloModel.EstudianteId))
                     {
                         return NotFound();
                     }
@@ -118,11 +118,11 @@ namespace SCarrillo.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CarreraId"] = new SelectList(_context.Carrera, "CarreraId", "Campus", sCarrillo.CarreraId);
-            return View(sCarrillo);
+            ViewData["CarreraId"] = new SelectList(_context.Carrera, "CarreraId", "Campus", sCarrilloModel.CarreraId);
+            return View(sCarrilloModel);
         }
 
-        // GET: SCarrilloes/Delete/5
+        // GET: SCarrilloModels/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -130,33 +130,33 @@ namespace SCarrillo.Controllers
                 return NotFound();
             }
 
-            var sCarrillo = await _context.SCarrillo
+            var sCarrilloModel = await _context.SCarrillo
                 .Include(s => s.Carrera)
                 .FirstOrDefaultAsync(m => m.EstudianteId == id);
-            if (sCarrillo == null)
+            if (sCarrilloModel == null)
             {
                 return NotFound();
             }
 
-            return View(sCarrillo);
+            return View(sCarrilloModel);
         }
 
-        // POST: SCarrilloes/Delete/5
+        // POST: SCarrilloModels/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var sCarrillo = await _context.SCarrillo.FindAsync(id);
-            if (sCarrillo != null)
+            var sCarrilloModel = await _context.SCarrillo.FindAsync(id);
+            if (sCarrilloModel != null)
             {
-                _context.SCarrillo.Remove(sCarrillo);
+                _context.SCarrillo.Remove(sCarrilloModel);
             }
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool SCarrilloExists(int id)
+        private bool SCarrilloModelExists(int id)
         {
             return _context.SCarrillo.Any(e => e.EstudianteId == id);
         }

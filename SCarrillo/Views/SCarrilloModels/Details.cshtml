@@ -1,14 +1,13 @@
-﻿@model SCarrillo.Models.SCarrillo
+﻿@model SCarrillo.Models.SCarrilloModel
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Details";
 }
 
-<h1>Delete</h1>
+<h1>Details</h1>
 
-<h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>SCarrillo</h4>
+    <h4>SCarrilloModel</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -48,10 +47,8 @@
             @Html.DisplayFor(model => model.Carrera.Campus)
         </dd>
     </dl>
-    
-    <form asp-action="Delete">
-        <input type="hidden" asp-for="EstudianteId" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
-    </form>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.EstudianteId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
 </div>
