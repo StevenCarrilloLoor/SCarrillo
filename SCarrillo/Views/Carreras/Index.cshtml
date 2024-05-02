@@ -1,0 +1,47 @@
+﻿@model IEnumerable<SCarrillo.Models.Carrera>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NombreCarrera)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Campus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumeroSemestres)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreCarrera)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Campus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumeroSemestres)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.CarreraId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.CarreraId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.CarreraId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
